@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="14.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CodingChallenge.Common\CodingChallenge.Common.csproj" />
+    <ProjectReference Include="..\CodingChallenge.Data\CodingChallenge.Data.csproj" />
+    <ProjectReference Include="..\CodingChallenge.Data.Abstraction\CodingChallenge.Data.Abstraction.csproj" />
+    <ProjectReference Include="..\CodingChallenge.Dtos\CodingChallenge.Dtos.csproj" />
+    <ProjectReference Include="..\CodingChallenge.Service.Abstraction\CodingChallenge.Service.Abstraction.csproj" />
+  </ItemGroup>
+
+</Project>

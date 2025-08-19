@@ -1,0 +1,6 @@
+@CodingChallenge.WebApi_HostAddress = http://localhost:5064
+
+GET {{CodingChallenge.WebApi_HostAddress}}/api/v1/transactions/
+Accept: application/json
+
+###
