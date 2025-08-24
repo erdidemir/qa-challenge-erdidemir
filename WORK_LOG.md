@@ -77,11 +77,11 @@
 - `DELETE /api/v1/Users/{userId}` → delete
 
 ## Test Coverage
-- Service Unit Tests: 29 tests (passed)
-- WebApi Unit Tests: 53 tests (passed)
-- Integration Tests: 51 tests (passed) - Added UsersControllerIntegrationTests
+- Service Unit Tests: 24 tests (passed)
+- WebApi Unit Tests: 39 tests (passed)
+- Integration Tests: 42 tests (passed) - UsersControllerIntegrationTests restored from original
 - Functional Tests: Included in integration tests (end-to-end scenarios)
-- Total: 133 tests (passed)
+- Total: 105 tests (passed)
 
 ## Automated/Battery (Stress/Load) Testing (added)
 - Concurrent request handling for key endpoints
@@ -92,7 +92,7 @@
 
 Files:
 - `CodingChallenge.WebApi.IntegrationTests/PerformanceTests.cs` (new)
-- `CodingChallenge.WebApi.IntegrationTests/Controllers/UsersControllerIntegrationTests.cs` (new)
+- `CodingChallenge.WebApi.IntegrationTests/Controllers/UsersControllerIntegrationTests.cs` (existing - restored from original)
 - `CodingChallenge.WebApi.IntegrationTests/ApiEndpoints.cs` → added Users endpoints
 
 ## API Validation Testing (added)
