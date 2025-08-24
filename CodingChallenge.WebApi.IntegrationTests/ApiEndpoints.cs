@@ -17,5 +17,16 @@
         public static string GetTransactionsByTransactionType => "api/v1/Transactions/GroupByTransactionType";
 
         public static string GetTransactionsByUser => "api/v1/Transactions/GroupByUser";
+
+        // Users endpoints
+        public static string CreateUser => "api/v1/Users";
+
+        public static string GetUsers => "api/v1/Users?pageNumber={0}&pageSize={1}";
+
+        public static string GetUserById => "api/v1/Users/{0}";
+
+        public static string UpdateUserById => "api/v1/Users/{0}";
+
+        public static string DeleteUserById => "api/v1/Users/{0}";
     }
 }
