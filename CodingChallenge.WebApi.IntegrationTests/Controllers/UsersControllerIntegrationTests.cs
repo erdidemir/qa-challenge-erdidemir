@@ -71,6 +71,31 @@ namespace CodingChallenge.WebApi.IntegrationTests.Controllers
         public async Task InvokingGetUsersApiEndPoint_ShouldReturn200StatusCode_AndUsersList_WhenUsersExist()
         {
             // Arrange
+            AddOrUpdateUserDto addUserDto1 = new()
+            {
+                UserId = "TestUser1",
+                UserName = "Test User 1",
+                Email = "testuser1@test.com",
+                PhoneNumber = "1234567890",
+                IsActive = true
+            };
+
+            AddOrUpdateUserDto addUserDto2 = new()
+            {
+                UserId = "TestUser2",
+                UserName = "Test User 2",
+                Email = "testuser2@test.com",
+                PhoneNumber = "0987654321",
+                IsActive = false
+            };
+
+            // First create users
+            HttpResponseMessage createResponse1 = await base.HttpClient.PostAsJsonAsync(ApiEndpoints.CreateUser, addUserDto1);
+            createResponse1.StatusCode.Should().Be(HttpStatusCode.Created);
+
+            HttpResponseMessage createResponse2 = await base.HttpClient.PostAsJsonAsync(ApiEndpoints.CreateUser, addUserDto2);
+            createResponse2.StatusCode.Should().Be(HttpStatusCode.Created);
+
             const int pageNumber = 1;
             const int pageSize = 10;
 
@@ -115,7 +140,20 @@ namespace CodingChallenge.WebApi.IntegrationTests.Controllers
         public async Task InvokingGetUserByIdApiEndPoint_ShouldReturn200StatusCode_AndUserDetails_WhenUserExists()
         {
             // Arrange
-            string userId = base.CodingChallengeDbContext.Users.First().UserId;
+            AddOrUpdateUserDto addUserDto = new()
+            {
+                UserId = "TestUserForGetById",
+                UserName = "Test User For Get By Id",
+                Email = "testuserforgetbyid@test.com",
+                PhoneNumber = "1234567890",
+                IsActive = true
+            };
+
+            // First create a user
+            HttpResponseMessage createResponse = await base.HttpClient.PostAsJsonAsync(ApiEndpoints.CreateUser, addUserDto);
+            createResponse.StatusCode.Should().Be(HttpStatusCode.Created);
+
+            string userId = addUserDto.UserId;
 
             // Act
             string requestUri = string.Format(ApiEndpoints.GetUserById, userId);
@@ -158,15 +196,28 @@ namespace CodingChallenge.WebApi.IntegrationTests.Controllers
         public async Task InvokingUpdateUserApiEndPoint_ShouldReturn204StatusCode_WhenUserUpdatedSuccessfully()
         {
             // Arrange
+            AddOrUpdateUserDto addUserDto = new()
+            {
+                UserId = "TestUserForUpdate",
+                UserName = "Test User For Update",
+                Email = "testuserforupdate@test.com",
+                PhoneNumber = "1234567890",
+                IsActive = true
+            };
+
+            // First create a user
+            HttpResponseMessage createResponse = await base.HttpClient.PostAsJsonAsync(ApiEndpoints.CreateUser, addUserDto);
+            createResponse.StatusCode.Should().Be(HttpStatusCode.Created);
+
             AddOrUpdateUserDto updateUserDto = new()
             {
-                UserId = "TestUser1",
-                UserName = "Updated Test User 1",
-                Email = "updatedtestuser1@test.com",
+                UserId = "UpdatedTestUser",
+                UserName = "Updated Test User",
+                Email = "updatedtestuser@test.com",
                 PhoneNumber = "0987654321",
                 IsActive = false
             };
-            string userId = base.CodingChallengeDbContext.Users.First().UserId;
+            string userId = addUserDto.UserId;
 
             // Act
             string requestUri = string.Format(ApiEndpoints.UpdateUserById, userId);
@@ -210,7 +261,20 @@ namespace CodingChallenge.WebApi.IntegrationTests.Controllers
         public async Task InvokingDeleteUserApiEndPoint_ShouldReturn204StatusCode_WhenUserDeletedSuccessfully()
         {
             // Arrange
-            string userId = base.CodingChallengeDbContext.Users.First().UserId;
+            AddOrUpdateUserDto addUserDto = new()
+            {
+                UserId = "TestUserForDelete",
+                UserName = "Test User For Delete",
+                Email = "testuserfordelete@test.com",
+                PhoneNumber = "1234567890",
+                IsActive = true
+            };
+
+            // First create a user
+            HttpResponseMessage createResponse = await base.HttpClient.PostAsJsonAsync(ApiEndpoints.CreateUser, addUserDto);
+            createResponse.StatusCode.Should().Be(HttpStatusCode.Created);
+
+            string userId = addUserDto.UserId;
 
             // Act
             string requestUri = string.Format(ApiEndpoints.DeleteUserById, userId);

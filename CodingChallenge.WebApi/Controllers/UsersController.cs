@@ -63,10 +63,10 @@ namespace CodingChallenge.WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> GetUserById(
-            [FromRoute] int userId,
+            [FromRoute] string userId,
             CancellationToken cancellationToken = default)
         {
-            if (userId <= 0)
+            if (string.IsNullOrWhiteSpace(userId))
             {
                 return BadRequest(SharedResources.InvalidTransactionIdErrorMessage);
             }
@@ -116,11 +116,11 @@ namespace CodingChallenge.WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> UpdateUser(
-            [FromRoute] int userId,
+            [FromRoute] string userId,
             [FromBody] AddOrUpdateUserDto updateUserDto,
             CancellationToken cancellationToken = default)
         {
-            if (userId <= 0)
+            if (string.IsNullOrWhiteSpace(userId))
             {
                 return BadRequest(SharedResources.InvalidTransactionIdErrorMessage);
             }
@@ -150,10 +150,10 @@ namespace CodingChallenge.WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> DeleteUser(
-           [FromRoute] int userId,
+           [FromRoute] string userId,
            CancellationToken cancellationToken = default)
         {
-            if (userId <= 0)
+            if (string.IsNullOrWhiteSpace(userId))
             {
                 return BadRequest(SharedResources.InvalidTransactionIdErrorMessage);
             }
@@ -168,6 +168,7 @@ namespace CodingChallenge.WebApi.Controllers
             }
 
             return NoContent();
+
         }
     }
 }

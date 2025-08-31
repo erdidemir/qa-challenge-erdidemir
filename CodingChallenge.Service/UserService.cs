@@ -34,13 +34,13 @@ namespace CodingChallenge.Service
 
         /// <inheritdoc />
         public async Task<UserDto?> GetUserById(
-            int userId,
+            string userId,
             CancellationToken cancellationToken = default)
         {
             UserDataModel? userDataModel = await codingChallengeDbContext
                 .Users
                 .AsNoTracking()
-                .SingleOrDefaultAsync(x => x.Id == userId, cancellationToken);
+                .SingleOrDefaultAsync(x => x.UserId == userId, cancellationToken);
 
             return mapper.Map<UserDto?>(userDataModel);
         }
@@ -65,13 +65,13 @@ namespace CodingChallenge.Service
 
         /// <inheritdoc />
         public async Task<bool> UpdateUser(
-            int userId,
+            string userId,
             AddOrUpdateUserDto updateUserDto,
             CancellationToken cancellationToken = default)
         {
             UserDataModel? userDataModel = await codingChallengeDbContext
                 .Users
-                .SingleOrDefaultAsync(x => x.Id == userId, cancellationToken);
+                .SingleOrDefaultAsync(x => x.UserId == userId, cancellationToken);
 
             if (userDataModel is null)
             {
@@ -88,12 +88,12 @@ namespace CodingChallenge.Service
 
         /// <inheritdoc />
         public async Task<bool> DeleteUser(
-            int userId,
+            string userId,
             CancellationToken cancellationToken = default)
         {
             UserDataModel? userDataModel = await codingChallengeDbContext
                 .Users
-                .SingleOrDefaultAsync(x => x.Id == userId, cancellationToken);
+                .SingleOrDefaultAsync(x => x.UserId == userId, cancellationToken);
 
             if (userDataModel is null)
             {

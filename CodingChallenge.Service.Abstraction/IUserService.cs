@@ -26,7 +26,7 @@ namespace CodingChallenge.Service.Abstraction
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>The user.</returns>
         Task<UserDto?> GetUserById(
-            int userId,
+            string userId,
             CancellationToken cancellationToken = default);
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace CodingChallenge.Service.Abstraction
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>The success status.</returns>
         Task<bool> UpdateUser(
-            int userId,
+            string userId,
             AddOrUpdateUserDto updateUserDto,
             CancellationToken cancellationToken = default);
 
@@ -58,7 +58,7 @@ namespace CodingChallenge.Service.Abstraction
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>The success status.</returns>
         Task<bool> DeleteUser(
-            int userId,
+            string userId,
             CancellationToken cancellationToken = default);
     }
 }
