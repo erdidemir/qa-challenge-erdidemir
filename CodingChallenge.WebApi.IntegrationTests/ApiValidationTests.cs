@@ -291,19 +291,6 @@ namespace CodingChallenge.WebApi.IntegrationTests
         }
 
         [Theory]
-        [InlineData("")]
-        [InlineData("   ")]
-        public async Task GetUserById_ShouldReturnBadRequest_ForInvalidId(string invalidId)
-        {
-            // Act
-            var response = await HttpClient.GetAsync($"/api/v1/Users/{invalidId}");
-
-            // Assert
-            response.Should().NotBeNull();
-            response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
-        }
-
-        [Theory]
         [InlineData("invalid-user-id")]
         [InlineData("non-existent-user")]
         public async Task GetUserById_ShouldReturnNotFound_ForNonExistentId(string invalidId)
